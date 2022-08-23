@@ -33,6 +33,7 @@ class _SignInState extends State<SignIn> {
       print("signed in ${user!.displayName}");
 
       return user;
+      // ignore: empty_catches
     } catch (e) {}
   }
 

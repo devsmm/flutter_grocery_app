@@ -1,0 +1,34 @@
+{
+    "Item": {
+      "01": {
+        "name": "Basil",
+        "price": "50.0",
+        "image": "'https://assets.stickpng.com/images/58bf1e2ae443f41d77c734ab.png'"
+      },
+      "02": {
+        "name": "Tomatoes",
+        "price": "60.0",
+        "image": "https://www.pngitem.com/pimgs/m/21-214359_tomatoes-png-single-fruits-and-vegetables-transparent-png.png"
+      },
+      "03": {
+        "name": "Onions",
+        "price": "90.0",
+        "image": "https://image.similarpng.com/very-thumbnail/2022/01/Red-onions-isolated-on-transparent-background-PNG.png"
+      },
+      "04": {
+        "name": "Salt",
+        "price": "50.0",
+        "image": "https://www.pngitem.com/pimgs/m/16-167783_salt-png-images-salt-png-transparent-png.png"
+      },
+      "05": {
+        "name": "Sugar",
+        "price": "200.0",
+        "image": "https://toppng.com/uploads/preview/sugar-png-11553971286kboc6qpqgb.png"
+      },
+      "06": {
+        "name": "Rice",
+        "price": "1000.0",
+        "image": "https://www.kindpng.com/picc/m/573-5738297_rice-bag-png-transparent-png.png"
+      }
+    }
+  }
