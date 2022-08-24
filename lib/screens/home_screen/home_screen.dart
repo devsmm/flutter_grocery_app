@@ -1,24 +1,19 @@
 // ignore_for_file: deprecated_member_use
 
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:grocery_app/provider/cart_provider.dart';
+import 'package:grocery_app/screens/home_screen/drawer.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:grocery_app/screens/home_screen/about_us.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:grocery_app/auth/sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:grocery_app/models/item_model.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:grocery_app/screens/home_screen/single_products.dart';
 import 'package:grocery_app/screens/home_screen/catagories.dart';
 
 import '../../models/cart.dart';
+import 'cart_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   List<String> productName = [
@@ -34,139 +29,13 @@ class HomeScreen extends StatelessWidget {
   List<int> productPrice = [100, 60, 80, 120, 140, 160, 500];
   List<String> productImage = [
     'https://assets.stickpng.com/images/58bf1e2ae443f41d77c734ab.png',
-    'https://www.pngitem.com/pimgs/m/54-542206_transparent-background-tomato-transparent-hd-png-download.png',
-    'https://p.kindpng.com/picc/s/11-118958_banana-file-bananas-svg-wikimedia-commons-banana-png.png',
-    'https://www.nicepng.com/png/detail/192-1925733_onion-free-png-image-transparent-background-onion-png.png',
+    'https://www.freepnglogos.com/uploads/tomato-png/tomato-basic-knives-and-their-uses-1.png',
+    'https://www.freepnglogos.com/uploads/banana-png/banana-clipart-transparent-background-pencil-and-19.png',
+    'https://www.freepnglogos.com/uploads/onion-png/onion-maahir-foods-10.png',
     'https://www.freepnglogos.com/uploads/grapes-png/grapes-dimidwa-12.png',
-    'https://toppng.com/uploads/preview/apple-fruit-png-apple-fruit-transparent-11563073201mj52xnr1gp.png',
-    'https://toppng.com/uploads/preview/basket-of-fruits-11563021115hxf8swa7s0.png'
+    'https://www.freepnglogos.com/uploads/apple-logo-png/apple-logo-latest-apple-logo-icon-gif-15.png',
+    'https://www.freepnglogos.com/uploads/fruits-png/mixed-fruits-bowl-png-clipart-best-web-clipart-16.png'
   ];
-
-  Widget singleProducts(String imageLink, String name, String unit, int price) {
-    return Container(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 5,
-      ),
-      height: 250,
-      width: 160,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: const Color(0xffd9dad9),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: 2,
-            child: Image.network(imageLink),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('$name',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  Text(
-                    '$unit: $price',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-
-                  // Row(
-                  //   children: [
-                  //     Expanded(
-                  //       child: Container(
-                  //         padding: const EdgeInsets.only(
-                  //           left: 2,
-                  //         ),
-                  //         height: 30,
-                  //         width: 50,
-                  //         decoration: BoxDecoration(
-                  //           border: Border.all(color: Colors.grey),
-                  //           borderRadius: BorderRadius.circular(8),
-                  //         ),
-                  //         child: Row(
-                  //           children: const [
-                  //             Expanded(
-                  //               child: Center(
-                  //                 child: Text('100 grams',
-                  //                     style: TextStyle(
-                  //                       color: Colors.black,
-                  //                       fontSize: 12,
-                  //                       fontWeight: FontWeight.bold,
-                  //                     )),
-                  //               ),
-                  //             ),
-                  //             Icon(
-                  //               Icons.arrow_drop_down,
-                  //               color: Colors.black,
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     const SizedBox(
-                  //       width: 5,
-                  //     ),
-                  //     Expanded(
-                  //       child: Container(
-                  //         height: 30,
-                  //         width: 50,
-                  //         decoration: BoxDecoration(
-                  //           border: Border.all(color: Colors.grey),
-                  //           borderRadius: BorderRadius.circular(8),
-                  //         ),
-                  //         // child: Row(
-                  //         //   mainAxisAlignment: MainAxisAlignment.center,
-                  //         //   children: [
-                  //         //     Icon(
-                  //         //       Icons.remove,
-                  //         //       size: 15,
-                  //         //     ),
-                  //         //     Text(
-                  //         //       '1',
-                  //         //       style: TextStyle(fontWeight: FontWeight.bold),
-                  //         //     ),
-                  //         //     Icon(
-                  //         //       Icons.add,
-                  //         //       size: 15,
-                  //         //     )
-                  //         //   ],
-                  //         // ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget listTile({IconData? icon, String? title}) {
-    return ListTile(
-      leading: Icon(
-        icon,
-        size: 32,
-      ),
-      title: Text(
-        title!,
-        style: TextStyle(
-          color: Colors.black,
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -175,111 +44,8 @@ class HomeScreen extends StatelessWidget {
       child: Builder(builder: (BuildContext context) {
         return Scaffold(
           backgroundColor: const Color(0xffcbcbcb),
-          drawer: Drawer(
-            child: Container(
-              color: Color(0xffd1ad17),
-              child: ListView(
-                children: [
-                  DrawerHeader(
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.white54,
-                          radius: 43,
-                          child: CircleAvatar(
-                            backgroundColor: Colors.yellow,
-                            radius: 40,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text('Welcome '),
-                            SizedBox(
-                              height: 7,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Column(
-                    children: <Widget>[
-                      Container(
-                          child: Column(
-                        children: <Widget>[
-                          FlatButton(
-                            child: Text("Home"),
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HomeScreen(),
-                              ));
-                            },
-                          ),
-                          FlatButton(
-                            child: Text("About "),
-                            onPressed: () {},
-                          ),
-                          FlatButton(
-                            child: Text("Cart"),
-                            onPressed: () {},
-                          ),
-                          FlatButton(
-                            child: Text("FAQs"),
-                            onPressed: () {},
-                          ),
-                        ],
-                      ))
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 20,
-                    ),
-                    height: 350,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Contact Support'),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: [
-                                Text('Call us:'),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text('+977-9841234567'),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Row(
-                            children: [
-                              Text('Mail us:'),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text('grocery@gmail.com'),
-                            ],
-                          ),
-                        ]),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          drawer: drawerApp(context),
+
           appBar: AppBar(
             iconTheme: const IconThemeData(
               color: Colors.black,
@@ -287,10 +53,15 @@ class HomeScreen extends StatelessWidget {
             backgroundColor: const Color(0xffd6b738),
             title: const Text('Home', style: TextStyle(color: Colors.black)),
             actions: [
-              Badge(
-                badgeContent: Text('0'),
-                animationDuration: Duration(microseconds: 300),
-                child: Icon(Icons.shopping_bag_outlined),
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CartScreen()));
+                },
+                child: Badge(
+                  animationDuration: Duration(microseconds: 300),
+                  child: Icon(Icons.shopping_bag_outlined),
+                ),
               ),
               SizedBox(
                 width: 20.0,
@@ -403,6 +174,8 @@ class HomeScreen extends StatelessWidget {
                           productUnit[5], productPrice[5]),
                       singleProducts(productImage[6], productName[6],
                           productUnit[6], productPrice[6]),
+                      singleProducts(productImage[2], productName[2],
+                          productUnit[2], productPrice[2]),
                     ],
                   ),
                 ),

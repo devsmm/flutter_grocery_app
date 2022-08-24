@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
             title: 'Grocery App',
             theme: ThemeData(
               primarySwatch: Colors.blue,
+              fontFamily: 'Nexa',
             ),
             home: SplashScreen(),
           );

@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 
 import 'package:grocery_app/database/db_helper.dart';
 import 'package:grocery_app/models/cart_model.dart';
-
+import 'package:grocery_app/screens/home_screen/single_products.dart';
 import 'package:grocery_app/provider/cart_provider.dart';
 import 'package:grocery_app/screens/home_screen/cart_screen.dart';
+import 'package:grocery_app/screens/home_screen/drawer.dart';
 import 'package:provider/provider.dart';
-
-import 'home_screen.dart';
+import 'package:grocery_app/screens/home_screen/home_screen.dart';
 
 class CatagoriesScreen extends StatelessWidget {
   DBHelper dbHelper = DBHelper();
@@ -37,132 +37,6 @@ class CatagoriesScreen extends StatelessWidget {
     'https://toppng.com/uploads/preview/basket-of-fruits-11563021115hxf8swa7s0.png'
   ];
 
-  Widget singleProducts(String imageLink, String name) {
-    return Container(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 5,
-      ),
-      height: 250,
-      width: 160,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: const Color(0xffd9dad9),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: 2,
-            child: Image.network(imageLink),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('$name',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  const Text(
-                    'Rs.100/50 grams',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Center(
-                    child: Container(
-                      height: 25,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          color: Colors.green,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Center(
-                        child: Text('Add to Cart',
-                            style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
-                  )
-                  // Row(
-                  //   children: [
-                  //     Expanded(
-                  //       child: Container(
-                  //         padding: const EdgeInsets.only(
-                  //           left: 2,
-                  //         ),
-                  //         height: 30,
-                  //         width: 50,
-                  //         decoration: BoxDecoration(
-                  //           border: Border.all(color: Colors.grey),
-                  //           borderRadius: BorderRadius.circular(8),
-                  //         ),
-                  //         child: Row(
-                  //           children: const [
-                  //             Expanded(
-                  //               child: Center(
-                  //                 child: Text('100 grams',
-                  //                     style: TextStyle(
-                  //                       color: Colors.black,
-                  //                       fontSize: 12,
-                  //                       fontWeight: FontWeight.bold,
-                  //                     )),
-                  //               ),
-                  //             ),
-                  //             Icon(
-                  //               Icons.arrow_drop_down,
-                  //               color: Colors.black,
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     const SizedBox(
-                  //       width: 5,
-                  //     ),
-                  //     Expanded(
-                  //       child: Container(
-                  //         height: 30,
-                  //         width: 50,
-                  //         decoration: BoxDecoration(
-                  //           border: Border.all(color: Colors.grey),
-                  //           borderRadius: BorderRadius.circular(8),
-                  //         ),
-                  //         // child: Row(
-                  //         //   mainAxisAlignment: MainAxisAlignment.center,
-                  //         //   children: [
-                  //         //     Icon(
-                  //         //       Icons.remove,
-                  //         //       size: 15,
-                  //         //     ),
-                  //         //     Text(
-                  //         //       '1',
-                  //         //       style: TextStyle(fontWeight: FontWeight.bold),
-                  //         //     ),
-                  //         //     Icon(
-                  //         //       Icons.add,
-                  //         //       size: 15,
-                  //         //     )
-                  //         //   ],
-                  //         // ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget listTile({IconData? icon, String? title}) {
     return ListTile(
       leading: Icon(
@@ -186,111 +60,7 @@ class CatagoriesScreen extends StatelessWidget {
       child: Builder(builder: (BuildContext context) {
         return Scaffold(
           backgroundColor: const Color(0xffcbcbcb),
-          drawer: Drawer(
-            child: Container(
-              color: Color(0xffd1ad17),
-              child: ListView(
-                children: [
-                  DrawerHeader(
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.white54,
-                          radius: 43,
-                          child: CircleAvatar(
-                            backgroundColor: Colors.yellow,
-                            radius: 40,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text('Welcome '),
-                            SizedBox(
-                              height: 7,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Column(
-                    children: <Widget>[
-                      Container(
-                          child: Column(
-                        children: <Widget>[
-                          FlatButton(
-                            child: Text("Home"),
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HomeScreen(),
-                              ));
-                            },
-                          ),
-                          FlatButton(
-                            child: Text("About "),
-                            onPressed: () {},
-                          ),
-                          FlatButton(
-                            child: Text("Cart"),
-                            onPressed: () {},
-                          ),
-                          FlatButton(
-                            child: Text("FAQs"),
-                            onPressed: () {},
-                          ),
-                        ],
-                      ))
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 20,
-                    ),
-                    height: 350,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Contact Support'),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: [
-                                Text('Call us:'),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text('+977-9841234567'),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Row(
-                            children: [
-                              Text('Mail us:'),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text('grocery@gmail.com'),
-                            ],
-                          ),
-                        ]),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          drawer: drawerApp(context),
           appBar: AppBar(
             iconTheme: const IconThemeData(
               color: Colors.black,
