@@ -3,6 +3,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 
+import '../database/db_helper.dart';
+
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
 
@@ -11,6 +13,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  DBHelper dbHelper = DBHelper();
   _buildAppBar() {
     return AppBar(
       backgroundColor: const Color(0xffd6b738),
