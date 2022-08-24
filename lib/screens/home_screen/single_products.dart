@@ -5,7 +5,7 @@ Widget singleProducts(String imageLink, String name, String unit, int price) {
     margin: const EdgeInsets.symmetric(
       horizontal: 5,
     ),
-    height: 250,
+    height: 200,
     width: 160,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
@@ -29,6 +29,9 @@ Widget singleProducts(String imageLink, String name, String unit, int price) {
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     )),
+                SizedBox(
+                  height: 5,
+                ),
                 Text(
                   '$unit: $price',
                   style: TextStyle(

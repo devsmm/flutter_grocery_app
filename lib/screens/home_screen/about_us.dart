@@ -35,6 +35,19 @@ class AboutUs extends StatelessWidget {
           )
         ],
       ),
+      body: ListView(
+        children: [
+          Image(
+              image: NetworkImage(
+                  'https://www.eatthis.com/wp-content/uploads/sites/4/2020/08/grocery-app-online-shopping.jpg?quality=82&strip=1')),
+          Image(
+              image: NetworkImage(
+                  'https://blog.foodmandu.com/wp-content/uploads/2021/02/grocery.jpg')),
+          Image(
+              image: NetworkImage(
+                  'https://groceries.ng/storage/22/groceries-banner-4.jpg')),
+        ],
+      ),
     );
   }
 }
