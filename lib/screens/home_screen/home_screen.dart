@@ -11,6 +11,7 @@ import 'package:grocery_app/screens/home_screen/about_us.dart';
 import 'package:flutter/material.dart';
 import 'package:grocery_app/screens/home_screen/single_products.dart';
 import 'package:grocery_app/screens/home_screen/catagories.dart';
+import 'drawer.dart';
 
 import '../../models/cart.dart';
 import 'cart_screen.dart';
@@ -45,13 +46,13 @@ class HomeScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: const Color(0xffcbcbcb),
           drawer: drawerApp(context),
-
           appBar: AppBar(
             iconTheme: const IconThemeData(
               color: Colors.black,
             ),
             backgroundColor: const Color(0xffd6b738),
-            title: const Text('Home', style: TextStyle(color: Colors.black)),
+            title:
+                const Text('Catagories', style: TextStyle(color: Colors.black)),
             actions: [
               InkWell(
                 onTap: () {
@@ -59,6 +60,11 @@ class HomeScreen extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => CartScreen()));
                 },
                 child: Badge(
+                  badgeContent: Consumer<CartProvider>(
+                    builder: (context, value, child) {
+                      return Text(value.getCounter().toString());
+                    },
+                  ),
                   animationDuration: Duration(microseconds: 300),
                   child: Icon(Icons.shopping_bag_outlined),
                 ),
@@ -68,6 +74,7 @@ class HomeScreen extends StatelessWidget {
               )
             ],
           ),
+
           body: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: ListView(
